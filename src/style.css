@@ -138,3 +138,24 @@ tbody tr:hover {
     padding: 10px;
   }
 }
+
+thead button[data-sort] {
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #111827;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+thead button[data-sort]:hover {
+  background: #d1d5db;
+}
+
+thead button[data-sort]:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+}

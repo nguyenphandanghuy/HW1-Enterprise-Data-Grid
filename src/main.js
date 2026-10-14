@@ -27,36 +27,99 @@ app.innerHTML = `
     <div class="table-wrapper">
       <table>
         <caption>Employee records including department, role, and status</caption>
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Employee</th>
-            <th scope="col">Department</th>
-            <th scope="col">Role</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
+        
+<thead>
+  <tr>
+    <th scope="col">
+      <button type="button" data-sort="id">ID ↕</button>
+    </th>
+    <th scope="col">
+      <button type="button" data-sort="name">Employee ↕</button>
+    </th>
+    <th scope="col">
+      <button type="button" data-sort="department">Department ↕</button>
+    </th>
+    <th scope="col">
+      <button type="button" data-sort="role">Role ↕</button>
+    </th>
+    <th scope="col">
+      <button type="button" data-sort="status">Status ↕</button>
+    </th>
+  </tr>
+</thead>
+
         <tbody id="employee-rows"></tbody>
       </table>
     </div>
   </section>
 `;
 
+
 const tbody = document.querySelector("#employee-rows");
 const recordCount = document.querySelector("#record-count");
 
-tbody.innerHTML = employees.map(employee => `
-  <tr>
-    <td>${employee.id}</td>
-    <th scope="row">${employee.name}</th>
-    <td>${employee.department}</td>
-    <td>${employee.role}</td>
-    <td>
-      <span class="status status-${employee.status.toLowerCase().replaceAll(" ", "-")}">
-        ${employee.status}
-      </span>
-    </td>
-  </tr>
-`).join("");
+let sortKey = "id";
+let sortDirection = "asc";
 
-recordCount.textContent = `${employees.length} employees`;
+function renderRows() {
+  const sortedEmployees = [...employees].sort((a, b) => {
+    const valueA = a[sortKey];
+    const valueB = b[sortKey];
+
+    let comparison;
+
+    if (typeof valueA === "number" && typeof valueB === "number") {
+      comparison = valueA - valueB;
+    } else {
+      comparison = String(valueA).localeCompare(String(valueB));
+    }
+
+    return sortDirection === "asc" ? comparison : -comparison;
+  });
+
+  tbody.innerHTML = sortedEmployees.map(employee => `
+    <tr>
+      <td>${employee.id}</td>
+      <th scope="row">${employee.name}</th>
+      <td>${employee.department}</td>
+      <td>${employee.role}</td>
+      <td>
+        <span class="status status-${employee.status.toLowerCase().replaceAll(" ", "-")}">
+          ${employee.status}
+        </span>
+      </td>
+    </tr>
+  `).join("");
+
+  recordCount.textContent = `${employees.length} employees`;
+
+  document.querySelectorAll("thead button[data-sort]").forEach(button => {
+    const isCurrent = button.dataset.sort === sortKey;
+    button.setAttribute(
+      "aria-label",
+      `Sort by ${button.dataset.sort}${isCurrent ? `, currently ${sortDirection === "asc" ? "ascending" : "descending"}` : ""}`
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(isCurrent)
+    );
+  });
+}
+
+document.querySelectorAll("thead button[data-sort]").forEach(button => {
+  button.addEventListener("click", () => {
+    const selectedKey = button.dataset.sort;
+
+    if (sortKey === selectedKey) {
+      sortDirection = sortDirection === "asc" ? "desc" : "asc";
+    } else {
+      sortKey = selectedKey;
+      sortDirection = "asc";
+    }
+
+    renderRows();
+  });
+});
+
+renderRows();

@@ -1,16 +1,15 @@
+
 {
   "name": "hw2-audio-visualizer-queue",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
+  "devDependencies": {
     "vite": "^8.3.4"
   }
 }

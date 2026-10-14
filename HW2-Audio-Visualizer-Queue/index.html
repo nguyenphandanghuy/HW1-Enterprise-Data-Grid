@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Concurrent FIFO Audio Visualizer Queue Engine"
+    />
+    <title>Audio Visualizer Queue Engine</title>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <p class="eyebrow">HW2 · CONCURRENT SYSTEMS</p>
+        <h1>Audio Visualizer</h1>
+        <p class="subtitle">
+          A FIFO task queue for audio visualization and processing.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="queue-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="queue-heading">Audio task queue</h2>
+            <p>Tasks are processed in first-in, first-out order.</p>
+          </div>
+          <span id="queue-count" class="count-badge">0 tasks</span>
+        </div>
+
+        <div class="controls">
+          <label class="file-picker">
+            <span>Select audio</span>
+            <input id="audio-input" type="file" accept="audio/*" />
+          </label>
+          <button id="add-demo" class="button button-primary" type="button">
+            Add demo task
+          </button>
+          <button id="clear-queue" class="button button-secondary" type="button">
+            Clear queue
+          </button>
+        </div>
+
+        <p id="status-message" class="status-message" role="status" aria-live="polite">
+          Ready. Add a demo task to begin.
+        </p>
+
+        <div class="visualizer">
+          <canvas
+            id="visualizer-canvas"
+            width="900"
+            height="220"
+            role="img"
+            aria-label="Audio frequency visualization"
+          ></canvas>
+        </div>
+
+        <div class="now-playing">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="now-playing">No task is being processed.</span>
+        </div>
+
+        <h3>Queue items</h3>
+        <ul id="queue-list" class="queue-list">
+          <li class="empty-state">Your queue is empty.</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>Built with the Web Audio API · FIFO queue · Resource cleanup</p>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

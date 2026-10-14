@@ -1,0 +1,276 @@
+
+:root {
+  font-family: Inter, Arial, sans-serif;
+  color: #e8eefc;
+  background: #0b1020;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+  --panel: #131b30;
+  --border: #293653;
+  --muted: #9aa8c4;
+  --accent: #7c9cff;
+  --green: #48d9a0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top left, #1a2850 0, transparent 45%),
+    #0b1020;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f7c873;
+  outline-offset: 3px;
+}
+
+.app {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 52px 0 28px;
+}
+
+.app-header {
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -1.5px;
+}
+
+.subtitle,
+.section-heading p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.panel {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgb(19 27 48 / 94%);
+  box-shadow: 0 24px 70px rgb(0 0 0 / 20%);
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.section-heading p {
+  margin-bottom: 0;
+}
+
+.count-badge {
+  padding: 8px 12px;
+  border: 1px solid #34456b;
+  border-radius: 999px;
+  color: #c4d3ff;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 26px 0 16px;
+}
+
+.button,
+.file-picker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.button-primary {
+  color: #10172a;
+  background: var(--accent);
+}
+
+.button-primary:hover {
+  background: #a0b6ff;
+}
+
+.button-secondary,
+.file-picker {
+  color: #e8eefc;
+  background: #1c2740;
+  border-color: #354462;
+}
+
+.button-secondary:hover,
+.file-picker:hover {
+  background: #263451;
+}
+
+.file-picker input {
+  width: 190px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.status-message {
+  min-height: 24px;
+  color: var(--green);
+  font-size: 14px;
+}
+
+.visualizer {
+  overflow: hidden;
+  margin-top: 22px;
+  border: 1px solid #293957;
+  border-radius: 14px;
+  background: #090e1b;
+}
+
+#visualizer-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.now-playing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 28px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px rgb(72 217 160 / 50%);
+}
+
+h3 {
+  font-size: 17px;
+}
+
+.queue-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.queue-item,
+.empty-state {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #10182b;
+}
+
+.queue-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.task-name {
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.task-meta {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.task-status {
+  flex-shrink: 0;
+  color: #b6c7ff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.empty-state {
+  color: var(--muted);
+  text-align: center;
+}
+
+footer {
+  padding: 20px 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding-top: 28px;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .controls > * {
+    width: 100%;
+  }
+
+  .file-picker {
+    flex-wrap: wrap;
+  }
+
+  .file-picker input {
+    width: 100%;
+    margin: 8px 0 0;
+  }
+}

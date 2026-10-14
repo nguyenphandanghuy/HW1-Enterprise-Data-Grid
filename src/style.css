@@ -159,3 +159,84 @@ thead button[data-sort]:focus-visible {
   outline: 3px solid #1d4ed8;
   outline-offset: 2px;
 }
+
+/* Search toolbar */
+.grid-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.grid-toolbar label {
+  font-weight: 700;
+}
+
+#employee-search {
+  flex: 1;
+  min-width: 240px;
+  padding: 10px 12px;
+  border: 1px solid #9ca3af;
+  border-radius: 6px;
+  font: inherit;
+}
+
+#clear-search {
+  padding: 10px 14px;
+  border: 1px solid #9ca3af;
+  border-radius: 6px;
+  background: #fff;
+  color: #111827;
+  font: inherit;
+  cursor: pointer;
+}
+
+#clear-search:hover {
+  background: #e5e7eb;
+}
+
+/* Sort buttons */
+thead button[data-sort] {
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #111827;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+thead button[data-sort]:hover {
+  background: #d1d5db;
+}
+
+/* Keyboard focus */
+thead button[data-sort]:focus-visible,
+#employee-search:focus-visible,
+#clear-search:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 3px;
+}
+
+/* Empty search results */
+.empty-state {
+  padding: 28px 16px;
+  color: #4b5563;
+  text-align: center;
+}
+
+/* Accessible text hidden visually */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
